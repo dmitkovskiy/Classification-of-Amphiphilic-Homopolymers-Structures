@@ -12,4 +12,10 @@ In the article "Geometric Features of Structuring of Amphiphilic Macromolecules 
 
 ![Fig. 2.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%202.png)
 
+*Figure 2* - Typical bilayer structures of amphiphilic homopolymers grafted to a spherical nanoparticle and their corresponding minimal surfaces.
+
 ![Fig. 3.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%203.png)
+
+*Figure 3* - Instant snapshots of structures with complex patterns: Double helicoid, Complex minimal surface.
+
+

@@ -18,4 +18,24 @@ In the article "Geometric Features of Structuring of Amphiphilic Macromolecules 
 
 **Figure 3** - Instant snapshots of structures with complex patterns: Double helicoid, Complex minimal surface.
 
+In this repository, we put forth an algorithm for the classification of amphiphilic homopolymers grafted to a spherical nanoparticle, employing an ensemble of CNN models based on flat projections of the original structures.
+
+## Data
+
+The data comprise point clouds of different types of points placed in three-dimensional space. Since some structures can be subdivided into simpler components, the structures were first clustered using the DBSCAN method from the sklearn.cluster module with parameter values eps = 1.6 and min_samples = 13, which yielded the most optimal results. The individual elements were aligned by bringing the inertia tensor to the principal axes. Given that the layers are oriented perpendicularly, a spherical layer of attachment points located near the nanoparticle was considered (Fig. 4).
+
+![Fig. 4.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%204.png)
+
+**Figure 4** - Pre-processing of structure point clouds.
+
+The grafted points were represented as two-dimensional graphs in spherical coordinates (φ, θ) with a size of 24x18 pixels (Fig. 5) and as projections of Cartesian coordinates (x, y) 24x24 pixels (Fig. 6). In all cases, the grafted points exhibited a consistent thickness and exhibited varying shapes. The pixel intensity is determined by the number of beads in the thin spherical layer surrounding the nanoparticle.
+
+![Fig. 5.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%205.png)
+
+**Figure 5** - Pixel images of spherical projections for typical elements in *φ-θ* coordinates.
+
+![Fig. 6.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%206.png)
+
+**Figure 6** - Pixel images of spherical projections for typical elements in *x-y* coordinates.
+
 

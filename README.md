@@ -1,0 +1,1 @@
+# Deep-Learning-Based-classification-of-amphiphilic-homopolymers-structures

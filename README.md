@@ -1,5 +1,6 @@
 # Deep Learning Based Classification of Amphiphilic Homopolymers Structures
 ## Introduction
+
 The possibility of creating particles with specific surface properties through relatively simple operations has resulted in a growing demand for spherical nanoparticles with grafted polymer chains across numerous scientific and industrial fields. These include the oil industry and the production of nanocomposites, as well as biomedical applications.
 
 In accordance with the aim of the paper, we examined a spherical nanoparticle of radius R, decorated by M macromolecules with N amphiphilic monomer units. The amphiphilic monomer units embody both solvophobic and solvophilic groups and are represented as A-graft-B "dumbbells," consisting of two beads with a diameter σ. The beads A are linked together, forming the chain backbone, while beads B serve as freely rotating side pendants (Fig. 1). The macromolecules are softly grafted onto the nanoparticle surface in the sense that the attachment points - A beads of the first monomer units of grafted macromolecules - are located in a thin ~ σ near-surface layer and are capable of moving freely along the nanoparticle surface. The decorated nanoparticle is immersed in a selective solvent, which is athermal for the main chain A groups and poor for the pendant B groups.
@@ -38,4 +39,24 @@ The grafted points were represented as two-dimensional graphs in spherical coord
 
 **Figure 6** - Pixel images of spherical projections for typical elements in *x-y* coordinates.
 
+In order to train the neural network, 600 snapshots were required for each class of each element from different morphological structures. The characteristic elements belonging to different morphological structures were considered as independent entities. Furthermore, augmentation was applied to images in spherical coordinates. This involved transferring 1/10 of the image from the left side to the right 10 times in a sequential manner. This process served to increase the size of the dataset and to avoid the occurrence of important patterns on the borders (Fig. 7). The resulting images were divided into training, validation and test samples in the ratio 0.8/0.1/0.1 accordingly. In order to prevent the leakage of data, each morphological structure and all of its constituent elements are associated with only one of the data samples, namely training, validation or test.
 
+![Fig. 7.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%207.png)
+
+**Figure 7** - Horizontal sequential shifting of the image from left to right.
+
+## Method
+
+The final structures were determined by applying the convolutional neural network classification of images to all components. The convolutional network's architectural layout is depicted in Figure 8. The network comprises two consecutive convolutional layers, each of which employs 3x3 filters with a step of 1 and a fill of 1. Following each convolutional layer, the rectified linear unit (ReLU) activation function is applied to introduce non-linearity into the model. Subsequently, the max-pooling operation is performed utilising a 2x2 core and step 2, which reduces the dimensionality of the data in order to emphasise more significant image characteristics. Subsequently, the data is transformed into a one-dimensional vector and transmitted to two consecutive fully connected layers. Subsequently, the ReLU activation function is applied to the output of the first fully connected layer. The initial layer comprises 128 neurons, with the number of neurons in the subsequent layer equating to the number of classes.
+
+![Fig. 8.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%208.png)
+
+**Figure 8** - Architecture of the applied convolutional neural network.
+
+The Cross Entropy Loss function was employed as the loss function, which is the standard choice for classification tasks. This function enables the model to efficiently estimate the discrepancy between the predicted class probabilities and the actual labels, thereby facilitating optimal learning.
+
+To evaluate the accuracy of the model, the MulticlassAccuracy metric was employed with parameter average = macro, whereby the statistics were initially calculated for each label and subsequently averaged. This metric is a straightforward and readily comprehensible indicator that permits the assessment of the model's efficacy in performing its designated task.
+
+*[1] D. Mitkovskiy, A. Lazutin, A. Ushakova, et. al., Geometric Features of Structuring of Amphiphilic Macromolecules on the Surface of a Spherical Nanoparticle. Polymer Science - Series C, 65, 1, 3-10 (2023).*
+
+## Code files

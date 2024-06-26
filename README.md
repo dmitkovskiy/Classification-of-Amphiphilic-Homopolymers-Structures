@@ -6,6 +6,8 @@ In accordance with the aim of the paper, we examined a spherical nanoparticle of
 
 ![Fig. 1.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%201.png)
 
+*Figure 1* - Model of an amphiphilic homopolymer with A-graft-B monomer units (a) and a nanoparticle decorated with macromolecules of the amphiphilic homopolymer (b). 
+
 In the article "Geometric Features of Structuring of Amphiphilic Macromolecules on the Surface of a Spherical Nanoparticle", we identified a novel type of ordering of polymer structures [1]. In poor for side-pendant solvent, the macromolecules self-assemble into thin membrane-like ABBA bilayers deviated from spherical nanoparticle. The bilayers form morphological structures, that depend on the grafting density and macromolecular polymerization degree, and can be referred to the classical family of complete embedded minimal surfaces. The plane disk, catenoid, helicoid, Costa and Enneper surfaces (Fig. 2), as well as “double” helicoid and “complex surfaces” (Fig 3) were identified.
 
 ![Fig. 2.png](https://github.com/dmitkovskiy/Deep-Learning-Based-Classification-of-Amphiphilic-Homopolymers-Structures/raw/main/images/Fig.%202.png)

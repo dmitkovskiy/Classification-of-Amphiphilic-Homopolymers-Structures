@@ -4,7 +4,7 @@ BATCH_SIZE = 60
 NUM_CLASSES = 6
 N_SHIFT = 10
 
-def rotate_to_principal_axes(points: np.ndarray, min_axes: str = 'Z'):
+def rotate_to_principal_axes(points: np.ndarray, max_axes: str = 'Z'):
     
     points_copy = points[:, :3]
     center = points_copy.mean(0)
@@ -18,9 +18,9 @@ def rotate_to_principal_axes(points: np.ndarray, min_axes: str = 'Z'):
     rot_points = rot_points + rot_center
     
     idx = w.argsort()
-    if min_axes == 'Z':
+    if max_axes == 'Z':
         rot_points = rot_points[:, idx[::-1]]
-    elif min_axes == 'X':
+    elif max_axes == 'X':
         rot_points = rot_points[:, idx]
     else:
         print('Минимальная ось указана неверно, ничего не делаю')

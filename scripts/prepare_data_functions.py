@@ -103,7 +103,7 @@ def plot_image(x: np.ndarray, y: np.ndarray, xlim: list = [-np.pi, np.pi], ylim:
     Returns:
     - Image.Image: A PIL Image object of the plotted image.
     """
-    
+    print(len(x))
     fig, ax = plt.subplots(figsize=(4, 3))
 
     ax.scatter(x, y, marker=marker, color=color, s=s)

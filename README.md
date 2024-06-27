@@ -62,20 +62,29 @@ To evaluate the accuracy of the model, the MulticlassAccuracy metric was employe
 ## Description
 
 ### data
+
 **structures** - Folder with np.ndarrays of 3D point clouds of typical amphiphilic homopolymers bilayer structureы
+
 **rough_elements.zip** - Archive with np.ndarrays of 3D point clouds of typical elements for CNN training, validation and test
 
 ### examples
+
 **predict_structures.ipynb** - Jupiter Notebook with an example of classifying all typical structures using the CNNs ensemble
 
 ### notebooks
+
 **train_phi_theta_model.ipynb** - Jupiter Notebook with an example of training *φ-θ* model
+
 **train_x_y_model.ipynb** - Jupiter Notebook with an example of training *x-y* model
 
 ### scripts
+
 **my_geom_functions.py** - Python module that provides several useful functions for geometric transformations and manipulations with points in three-dimensional space. A detailed description of the functions can be found inside the script.
+
 **my_models_functions.py** - Python module for a convolutional neural network (CNN) designed to classify images into one of six classes.It includes functions to initialize the model and to classify both individual elements and composite structures using pixel projections. A detailed description of the functions can be found inside the script.
+
 **my_train_functions.py** - Python module for model training, validation and testing. A detailed description of the functions can be found inside the script.
+
 **prepare_data_functions.py** - Python module for data pre-processing and point cloud imaging in 3D and 2D. A detailed description of the functions can be found inside the script.
 
 ### weights

@@ -219,7 +219,7 @@ def show_one_example_per_label(dataset: datasets.ImageFolder) -> None:
     
     plt.show()
 
-def get_phi_theta_image(dots: np.ndarray, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
+def get_phi_theta_image(dots, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
     """
     Generates an image of points in phi-theta coordinates.
 
@@ -243,7 +243,7 @@ def get_phi_theta_image(dots: np.ndarray, a: float = 4, da: float = 6, color: st
     image_pil = plot_image(phi, theta, xlim=[-np.pi, np.pi], ylim=[0, np.pi], color = color)
     return image_pil
 
-def get_x_y_image(dots: np.ndarray, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
+def get_x_y_image(dots, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
     """
     Generates an image of points in x-y coordinates.
 

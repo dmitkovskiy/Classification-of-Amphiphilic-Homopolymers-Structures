@@ -5,7 +5,18 @@ NUM_CLASSES = 6
 N_SHIFT = 10
 
 def rotate_to_principal_axes(points: np.ndarray, max_axes: str = 'Z'):
+    """
+    Rotates the input points to align their inertia tensor with principal axes.
+
+    Parameters:
+    - points (np.ndarray): A 2D array of shape (n, 3) or (n, 4), where n is the number of points. 
+                           The first three columns represent the (x, y, z) coordinates. 
+                           The optional fourth column represents the type of molecules.
+    - max_axes (str): The axis ('Z' or 'X') with maximal inertia moment. Default is Z.
     
+    Returns:
+    - np.ndarray: A 2D array of rotated points with the same shape as the input array.
+    """    
     points_copy = points[:, :3]
     center = points_copy.mean(0)
 
@@ -32,7 +43,19 @@ def rotate_to_principal_axes(points: np.ndarray, max_axes: str = 'Z'):
     return rot_points
 
 def drop_points_a_da(points: np.ndarray, a: float, da: float) -> np.ndarray:
+    """
+    Drops points that are not within the specified distance range from the origin.
     
+    Parameters:
+    - points (np.ndarray): A 2D array of shape (n, 3) or (n, 4), where n is the number of points. 
+                           The first three columns represent the (x, y, z) coordinates. 
+                           The optional fourth column represents the type of molecule.
+    - a (float): The minimum distance from the origin.
+    - da (float): The range of distances to include.
+    
+    Returns:
+    - np.ndarray: A 2D array of points within the specified distance range.
+    """     
     distances = np.linalg.norm(points[:, :3], axis=1)
     mask = np.logical_and(distances >= a, distances <= a + da)
     filtered_points = points[mask]
@@ -43,7 +66,18 @@ def drop_points_a_da(points: np.ndarray, a: float, da: float) -> np.ndarray:
     return filtered_points
 
 def cartesian_to_spherical(points: np.ndarray) -> np.ndarray:
+    """
+    Converts Cartesian coordinates to spherical coordinates.
     
+    Parameters:
+    - points (np.ndarray): A 2D array of shape (n, 3) or (n, 4), where n is the number of points. 
+                           The first three columns represent the (x, y, z) coordinates. 
+                           The optional fourth column represents the type of molecule.
+    
+    Returns:
+    - np.ndarray: A 2D array of points in spherical coordinates (r, theta, phi).
+                  If the input contains a fourth column, it is preserved in the output.
+    """     
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
     r = np.sqrt(np.sum(points[:, :3]**2, axis=1))
     theta = np.arccos(z / r)
@@ -56,7 +90,18 @@ def cartesian_to_spherical(points: np.ndarray) -> np.ndarray:
     return spherical_points
 
 def spherical_to_cartesian(points):
-
+    """
+    Converts spherical coordinates to Cartesian coordinates.
+    
+    Parameters:
+    - points (np.ndarray): A 2D array of shape (n, 3) or (n, 4), where n is the number of points. 
+                           The first three columns represent the (r, theta, phi) coordinates. 
+                           The optional fourth column represents the type of molecule.
+    
+    Returns:
+    - np.ndarray: A 2D array of points in Cartesian coordinates (x, y, z).
+                  If the input contains a fourth column, it is preserved in the output.
+    """
     r, theta, phi = points[:, 0], points[:, 1], points[:, 2]
     x = r * np.sin(theta) * np.cos(phi)
     y = r * np.sin(theta) * np.sin(phi)
@@ -69,6 +114,19 @@ def spherical_to_cartesian(points):
     return cartesian_points
 
 def flatten_points(points, a):
+    """
+    Flattens the points onto a sphere by setting the radial distance to a constant value.
+    
+    Parameters:
+    - points (np.ndarray): A 2D array of shape (n, 3) or (n, 4), where n is the number of points. 
+                           The first three columns represent the (x, y, z) coordinates. 
+                           The optional fourth column represents the type of molecule.
+    - a (float): The constant radial distance to set.
+    
+    Returns:
+    - np.ndarray: A 2D array of flattened points in Cartesian coordinates.
+                  If the input contains a fourth column, it is preserved in the output.
+    """     
     spherical_points = cartesian_to_spherical(points)
     spherical_points[:, 0] = a
     cartesian_coords = spherical_to_cartesian(spherical_points)
@@ -76,6 +134,19 @@ def flatten_points(points, a):
     return cartesian_coords
 
 def rotate_drop_flatten(points, a= 4, da= 6):
+    """
+    Rotates points to principal axes, drops points not within the specified distance range, and flattens the remaining points.
+    
+    Parameters:
+    - points (np.ndarray): A 2D array of shape (n, 3) or (n, 4), where n is the number of points. 
+                           The first three columns represent the (x, y, z) coordinates. 
+                           The optional fourth column represents the type of molecule.
+    - a (float): The minimum distance from the origin. Default is 4.
+    - da (float): The range of distances to include. Default is 6.
+    
+    Returns:
+    - np.ndarray: A 2D array of transformed points, or an empty array if no points are within the specified distance range.
+    """    
     r_points = rotate_to_principal_axes(points)
     d_r_points = drop_points_a_da(r_points, a, da)
     if len(d_r_points)>0:

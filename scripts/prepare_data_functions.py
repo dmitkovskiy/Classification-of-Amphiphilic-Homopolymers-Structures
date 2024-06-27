@@ -219,7 +219,7 @@ def show_one_example_per_label(dataset: datasets.ImageFolder) -> None:
     
     plt.show()
 
-def get_phi_theta_image(dots, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
+def get_phi_theta_image(dots: np.ndarray, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
     """
     Generates an image of points in phi-theta coordinates.
 
@@ -233,9 +233,7 @@ def get_phi_theta_image(dots, a: float = 4, da: float = 6, color: str = 'b') -> 
 
     Returns:
     - Image.Image: A PIL Image object of the phi-theta image.
-    """
-    ...
-    
+    """    
     f_d_r_dots = mgf.rotate_drop_flatten(dots, a=a, da=da)
     sp_dots = mgf.cartesian_to_spherical(f_d_r_dots)
     phi = sp_dots[:, 2]
@@ -243,7 +241,7 @@ def get_phi_theta_image(dots, a: float = 4, da: float = 6, color: str = 'b') -> 
     image_pil = plot_image(phi, theta, xlim=[-np.pi, np.pi], ylim=[0, np.pi], color = color)
     return image_pil
 
-def get_x_y_image(dots, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
+def get_x_y_image(dots: np.ndarray, a: float = 4, da: float = 6, color: str = 'b') -> Image.Image:
     """
     Generates an image of points in x-y coordinates.
 

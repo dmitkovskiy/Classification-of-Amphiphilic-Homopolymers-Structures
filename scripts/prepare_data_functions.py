@@ -31,7 +31,7 @@ def select_elements_sort_DBSCAN(norm_dots_with_type: np.ndarray, eps: float = 1.
     - list: A list of tuples, where each tuple contains the cluster index and the points belonging to that cluster.
     """
     dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-    labels = dbscan.fit_predict(dots[:, :3])
+    labels = dbscan.fit_predict(norm_dots_with_type[:, :3])
 
     mask = labels != -1
     dots = norm_dots_with_type[mask]
